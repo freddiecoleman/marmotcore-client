@@ -27,8 +27,12 @@ type Nodes struct {
 
 var client = http.Client{Timeout: time.Duration(10) * time.Second}
 
+func url(host string) string {
+	return "http://" + host + ":3000"
+}
+
 func GetNodes(host string) (error, *Nodes) {
-	resp, err := client.Get("http://" + host + ":3000/v1/nodes")
+	resp, err := client.Get(url(host) + "/v1/nodes")
 	if err != nil {
 		fmt.Printf("Error %s", err)
 		return err, nil
