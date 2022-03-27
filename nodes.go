@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"net/http"
-	"time"
 )
 
 type Node struct {
@@ -25,33 +23,20 @@ type Nodes struct {
 	Nodes []Node `json:"nodes"`
 }
 
-var client = http.Client{Timeout: time.Duration(10) * time.Second}
+func (mc MarmotcoreClient) GetNodes() (Nodes, error) {
+	var nodes Nodes
 
-func url(host string) string {
-	return "http://" + host + ":3000"
-}
+	resp, err := mc.getRequest("/nodes")
 
-func GetNodes(host string) (error, *Nodes) {
-	resp, err := client.Get(url(host) + "/v1/nodes")
 	if err != nil {
 		fmt.Printf("Error %s", err)
-		return err, nil
+		return nodes, err
 	}
+
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 
-	var nodes Nodes
-
 	json.Unmarshal(body, &nodes)
 
-	return nil, &nodes
-}
-
-func main() {
-	err, nodes := GetNodes("localhost")
-	if err != nil {
-		fmt.Printf("Error %s", err)
-		return
-	}
-	fmt.Print(nodes.Nodes[0].ChiaVersion)
+	return nodes, nil
 }
