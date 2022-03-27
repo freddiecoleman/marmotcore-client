@@ -35,8 +35,9 @@ func (mc MarmotcoreClient) getRequest(path string) (resp *http.Response, err err
 
 type Node struct {
 	UserId       string `json:"user_id"`
-	CreatedTime  int    `json:"created_time"`
+	CreatedTime  int64  `json:"created_time"`
 	NodeId       string `json:"node_id"`
+	PublicIp     string `json:"public_ip"`
 	Region       string `json:"region"`
 	InstanceType string `json:"instance_type"`
 	ChiaVersion  string `json:"chia_version"`
