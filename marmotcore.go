@@ -168,15 +168,39 @@ func main() {
 		port:       "3000",
 		apiVersion: "v1",
 	}
-	node, err := mc.CreateNode(&CreateNode{
-		Region:       "us-west-2",
-		InstanceType: "node.small",
-		ChiaVersion:  "1.3.*",
-		Network:      "testnet",
-	})
+	key, err := mc.GetKey("chia-1.3.*-testnet-testUserId-rocket-silence-shoot-313")
 	if err != nil {
 		fmt.Printf("Error %s", err)
 		return
 	}
-	fmt.Print(node)
+	fmt.Print(key)
+}
+
+type Key struct {
+	UserId string `json:"user_id"`
+	NodeId string `json:"node_id"`
+	Key    string `json:"key"`
+	Cert   string `json:"cert"`
+}
+
+type KeyResponse struct {
+	Key Key `json:"key"`
+}
+
+func (mc MarmotcoreClient) GetKey(nodeId string) (KeyResponse, error) {
+	var key KeyResponse
+
+	resp, err := mc.getRequest("/keys/" + nodeId)
+
+	if err != nil {
+		fmt.Printf("Error %s", err)
+		return key, err
+	}
+
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+
+	json.Unmarshal(body, &key)
+
+	return key, nil
 }
