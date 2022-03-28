@@ -1,7 +1,8 @@
-# Marmotcore Client
+# Go MarmotCore Cloud SDK
 
-Top Secret project. Enter the Marmotcore.
+This is a Golang implementation of the MarmotCore Cloud SDK.
 
-## What is this?
+## Features
 
-You will find out when you are ready.
+* Provision and deprovision MarmotCore Cloud Full Node Instances
+* Retrieve key/cert combo for performing RPC calls against a Full Node
