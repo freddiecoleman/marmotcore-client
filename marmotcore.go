@@ -161,21 +161,6 @@ func (mc MarmotcoreClient) DeleteNode(nodeId string) (DeleteNodeResponse, error)
 	return deleteNode, nil
 }
 
-func main() {
-	mc := &MarmotcoreClient{
-		protocol:   "http",
-		host:       "localhost",
-		port:       "3000",
-		apiVersion: "v1",
-	}
-	key, err := mc.GetKey("chia-1.3.*-testnet-testUserId-rocket-silence-shoot-313")
-	if err != nil {
-		fmt.Printf("Error %s", err)
-		return
-	}
-	fmt.Print(key)
-}
-
 type Key struct {
 	UserId string `json:"user_id"`
 	NodeId string `json:"node_id"`
@@ -185,6 +170,10 @@ type Key struct {
 
 type KeyResponse struct {
 	Key Key `json:"key"`
+}
+
+type KeysResponse struct {
+	Keys []Key `json:"keys"`
 }
 
 func (mc MarmotcoreClient) GetKey(nodeId string) (KeyResponse, error) {
@@ -203,4 +192,22 @@ func (mc MarmotcoreClient) GetKey(nodeId string) (KeyResponse, error) {
 	json.Unmarshal(body, &key)
 
 	return key, nil
+}
+
+func (mc MarmotcoreClient) GetKeys() (KeysResponse, error) {
+	var keys KeysResponse
+
+	resp, err := mc.getRequest("/keys")
+
+	if err != nil {
+		fmt.Printf("Error %s", err)
+		return keys, err
+	}
+
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+
+	json.Unmarshal(body, &keys)
+
+	return keys, nil
 }
