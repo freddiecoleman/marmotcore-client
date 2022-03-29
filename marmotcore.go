@@ -11,10 +11,10 @@ import (
 )
 
 type MarmotcoreClient struct {
-	protocol   string
-	host       string
-	port       string
-	apiVersion string
+	Protocol   string
+	Host       string
+	Port       string
+	ApiVersion string
 }
 
 type HTTPClient interface {
@@ -30,7 +30,7 @@ func init() {
 }
 
 func (mc MarmotcoreClient) url() string {
-	return mc.protocol + "://" + mc.host + ":" + mc.port + "/" + mc.apiVersion
+	return mc.Protocol + "://" + mc.Host + ":" + mc.Port + "/" + mc.ApiVersion
 }
 
 func (mc MarmotcoreClient) getRequest(path string) (resp *http.Response, err error) {

@@ -60,10 +60,10 @@ func TestGetNodes(t *testing.T) {
 		}, nil
 	}
 	mc := &MarmotcoreClient{
-		protocol:   "http",
-		host:       "localhost",
-		port:       "3000",
-		apiVersion: "v1",
+		Protocol:   "http",
+		Host:       "localhost",
+		Port:       "3000",
+		ApiVersion: "v1",
 	}
 	Client = &MockClient{}
 
@@ -96,10 +96,10 @@ func TestGetNode(t *testing.T) {
 		}, nil
 	}
 	mc := &MarmotcoreClient{
-		protocol:   "http",
-		host:       "localhost",
-		port:       "3000",
-		apiVersion: "v1",
+		Protocol:   "http",
+		Host:       "localhost",
+		Port:       "3000",
+		ApiVersion: "v1",
 	}
 	Client = &MockClient{}
 
@@ -130,10 +130,10 @@ func TestDeleteNode(t *testing.T) {
 		}, nil
 	}
 	mc := &MarmotcoreClient{
-		protocol:   "http",
-		host:       "localhost",
-		port:       "3000",
-		apiVersion: "v1",
+		Protocol:   "http",
+		Host:       "localhost",
+		Port:       "3000",
+		ApiVersion: "v1",
 	}
 	Client = &MockClient{}
 
@@ -161,10 +161,10 @@ func TestCreateNode(t *testing.T) {
 		}, nil
 	}
 	mc := &MarmotcoreClient{
-		protocol:   "http",
-		host:       "localhost",
-		port:       "3000",
-		apiVersion: "v1",
+		Protocol:   "http",
+		Host:       "localhost",
+		Port:       "3000",
+		ApiVersion: "v1",
 	}
 	Client = &MockClient{}
 
@@ -207,10 +207,10 @@ func TestGetKey(t *testing.T) {
 		}, nil
 	}
 	mc := &MarmotcoreClient{
-		protocol:   "http",
-		host:       "localhost",
-		port:       "3000",
-		apiVersion: "v1",
+		Protocol:   "http",
+		Host:       "localhost",
+		Port:       "3000",
+		ApiVersion: "v1",
 	}
 	Client = &MockClient{}
 
@@ -238,10 +238,10 @@ func TestGetKeys(t *testing.T) {
 		}, nil
 	}
 	mc := &MarmotcoreClient{
-		protocol:   "http",
-		host:       "localhost",
-		port:       "3000",
-		apiVersion: "v1",
+		Protocol:   "http",
+		Host:       "localhost",
+		Port:       "3000",
+		ApiVersion: "v1",
 	}
 	Client = &MockClient{}
 
